@@ -2,8 +2,8 @@
 //
 //	X68000 EMULATOR "XM6"
 //
-//	Copyright (C) 2001-2004 ‚o‚hD(ytanaka@ipc-tokai.or.jp)
-//	[ MFC ƒLƒ…[ ]
+//	Copyright (C) 2001-2004 ï¼°ï¼©ï¼Ž(ytanaka@ipc-tokai.or.jp)
+//	[ MFC ã‚­ãƒ¥ãƒ¼ ]
 //
 //---------------------------------------------------------------------------
 
@@ -12,57 +12,57 @@
 
 //===========================================================================
 //
-//	ƒLƒ…[
+//	ã‚­ãƒ¥ãƒ¼
 //
 //===========================================================================
 class CQueue
 {
 public:
-	// “à•”ƒf[ƒ^’è‹`
+	// å†…éƒ¨ãƒ‡ãƒ¼ã‚¿å®šç¾©
 	typedef struct _QUQUEINFO {
-		BYTE *pBuf;						// ƒoƒbƒtƒ@
-		DWORD dwSize;					// ƒTƒCƒY
-		DWORD dwMask;					// ƒ}ƒXƒN(ƒTƒCƒY-1)
-		DWORD dwRead;					// Readƒ|ƒCƒ“ƒ^
-		DWORD dwWrite;					// Writeƒ|ƒCƒ“ƒ^
-		DWORD dwNum;					// ŒÂ”
-		DWORD dwTotalRead;				// ‡ŒvRead
-		DWORD dwTotalWrite;				// ‡ŒvWrite
+		BYTE *pBuf;						// ãƒãƒƒãƒ•ã‚¡
+		DWORD dwSize;					// ã‚µã‚¤ã‚º
+		DWORD dwMask;					// ãƒžã‚¹ã‚¯(ã‚µã‚¤ã‚º-1)
+		DWORD dwRead;					// Readãƒã‚¤ãƒ³ã‚¿
+		DWORD dwWrite;					// Writeãƒã‚¤ãƒ³ã‚¿
+		DWORD dwNum;					// å€‹æ•°
+		DWORD dwTotalRead;				// åˆè¨ˆRead
+		DWORD dwTotalWrite;				// åˆè¨ˆWrite
 	} QUEUEINFO, *LPQUEUEINFO;
 
-	// Šî–{ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
+	// åŸºæœ¬ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
 	CQueue();
-										// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+										// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~CQueue();
-										// ƒfƒXƒgƒ‰ƒNƒ^
+										// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	BOOL FASTCALL Init(DWORD dwSize);
-										// ‰Šú‰»
+										// åˆæœŸåŒ–
 
 	// API
 	void FASTCALL Clear();
-										// ƒNƒŠƒA
+										// ã‚¯ãƒªã‚¢
 	BOOL FASTCALL IsEmpty()	const		{ return (BOOL)(m_Queue.dwNum == 0); }
-										// ƒLƒ…[‚ª‹ó‚©ƒ`ƒFƒbƒN
+										// ã‚­ãƒ¥ãƒ¼ãŒç©ºã‹ãƒã‚§ãƒƒã‚¯
 	DWORD FASTCALL GetNum()	const		{ return m_Queue.dwNum; }
-										// ƒLƒ…[‚Ìƒf[ƒ^”‚ðŽæ“¾
+										// ã‚­ãƒ¥ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿æ•°ã‚’å–å¾—
 	DWORD FASTCALL Get(BYTE *pDest);
-										// ƒLƒ…[“à‚Ìƒf[ƒ^‚ð‚·‚×‚ÄŽæ“¾
+										// ã‚­ãƒ¥ãƒ¼å†…ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã™ã¹ã¦å–å¾—
 	DWORD FASTCALL Copy(BYTE *pDest) const;
-										// ƒLƒ…[“à‚Ìƒf[ƒ^‚ð‚·‚×‚ÄŽæ“¾(ƒLƒ…[i‚ß‚È‚¢)
+										// ã‚­ãƒ¥ãƒ¼å†…ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã™ã¹ã¦å–å¾—(ã‚­ãƒ¥ãƒ¼é€²ã‚ãªã„)
 	void FASTCALL Discard(DWORD dwNum);
-										// ƒLƒ…[‚ði‚ß‚é
+										// ã‚­ãƒ¥ãƒ¼ã‚’é€²ã‚ã‚‹
 	void FASTCALL Back(DWORD dwNum);
-										// ƒLƒ…[‚ð–ß‚·
+										// ã‚­ãƒ¥ãƒ¼ã‚’æˆ»ã™
 	DWORD FASTCALL GetFree() const;
-										// ƒLƒ…[‚Ì‹ó‚«ŒÂ”‚ðŽæ“¾
+										// ã‚­ãƒ¥ãƒ¼ã®ç©ºãå€‹æ•°ã‚’å–å¾—
 	BOOL FASTCALL Insert(const BYTE *pSrc, DWORD dwLength);
-										// ƒLƒ…[‚É‘}“ü
+										// ã‚­ãƒ¥ãƒ¼ã«æŒ¿å…¥
 	void FASTCALL GetQueue(QUEUEINFO *pInfo) const;
-										// ƒLƒ…[î•ñŽæ“¾
+										// ã‚­ãƒ¥ãƒ¼æƒ…å ±å–å¾—
 
 private:
 	QUEUEINFO m_Queue;
-										// “à•”ƒ[ƒN
+										// å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 };
 
 #endif	// queue_h
