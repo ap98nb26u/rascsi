@@ -19,7 +19,7 @@
 //	接続方法定義の選択
 //
 //---------------------------------------------------------------------------
-#define CONNECT_TYPE_STANDARD		// 標準(SCSI論理,標準ピンアサイン)
+//#define CONNECT_TYPE_STANDARD		// 標準(SCSI論理,標準ピンアサイン)
 //#define CONNECT_TYPE_FULLSPEC		// フルスペック(SCSI論理,標準ピンアサイン)
 //#define CONNECT_TYPE_AIBOM		// AIBOM版(正論理,固有ピンアサイン)
 //#define CONNECT_TYPE_GAMERNIUM	// GAMERnium.com版(標準論理,固有ピンアサイン)

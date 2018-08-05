@@ -3,6 +3,23 @@ CFLAGS   = -DNDEBUG -O3
 CXX      = g++
 CXXFLAGS = -DNDEBUG -O3
 
+ifdef FULLSPEC	# フルスペック(SCSI論理,標準ピンアサイン)
+CONNECT_TYPE=FULLSPEC
+else
+ifdef AIBOM	# AIBOM版(正論理,固有ピンアサイン)
+CONNECT_TYPE=AIBOM
+else
+ifdef GAMERNIUM	# GAMERnium.com版(標準論理,固有ピンアサイン)
+CONNECT_TYPE=GAMERNIUM
+else	# 標準(SCSI論理,標準ピンアサイン)
+CONNECT_TYPE=STANDARD
+endif
+endif
+endif
+CFLAGS+=-DCONNECT_TYPE_$(CONNECT_TYPE)
+CXXFLAGS+=-DCONNECT_TYPE_$(CONNECT_TYPE)
+LDFLAGS+=-DCONNECT_TYPE_$(CONNECT_TYPE)
+
 RASCSI = rascsi
 RASCTL = rasctl
 RASDUMP = rasdump
@@ -39,13 +56,13 @@ OBJ_RASDUMP := $(SRC_RASDUMP:.c=.o)
 ALL: $(BIN_ALL)
 
 $(RASCSI): $(OBJ_RASCSI) $
-	$(CXX) -o $@ $(OBJ_RASCSI) -lpthread
+	$(CXX) -o $@ $(LDFLAGS) $(OBJ_RASCSI) -lpthread
 
 $(RASCTL): $(OBJ_RASCTL) $
-	$(CXX) -o $@ $(OBJ_RASCTL)
+	$(CXX) -o $@ $(LDFLAGS) $(OBJ_RASCTL)
 
 $(RASDUMP): $(OBJ_RASDUMP) $
-	$(CXX) -o $@ $(OBJ_RASDUMP)
+	$(CXX) -o $@ $(LDFLAGS) $(OBJ_RASDUMP)
 
 clean:
 	rm -f *.o $(BIN_ALL)
